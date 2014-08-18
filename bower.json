@@ -1,16 +1,17 @@
 {
-  "name": "spike",
-  "version": "0.0.1",
-  "private": "true",
-  "dependencies":{
-    "foundation":"5.1.1"
+  "name"    : "spike",
+  "version" : "0.0.1",
+  "private" : "true",
+  "main"    : [
+    "dist/spike.js",
+    "dist/spike.css"
+  ]
+  "dependencies"  :{
+    "foundation"  :"5.1.1"
   },
-  "ignore":[
-    "fastclick",
-    "jquery",
-    "jquery-placeholder",
-    "jquery.cookie",
-    "modernizr"
-
+  "ignore"  :[
+    "bower_components",
+    ".jshintrc",
+    "**/*.txt"
   ]
 }
