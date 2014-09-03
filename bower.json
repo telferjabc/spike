@@ -5,7 +5,7 @@
   "main"    : [
     "dist/spike.js",
     "dist/spike.css"
-  ]
+  ],
   "dependencies"  :{
     "foundation"  :"5.1.1"
   },
