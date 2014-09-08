@@ -1,5 +1,6 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    notify = require('gulp-notify');
 
 
 var config = {
@@ -19,7 +20,7 @@ gulp.task('build-style', function () {
   }
 
   return gulp.src(config.product.styleInput)
-    .pipe(sass())
+    .pipe(sass({sourceComments: 'map', sourceMap: 'sass', style: 'compact'}))
     .pipe(gulp.dest(config.dist))
     .pipe(notify({
       message: 'build-style:complete'
@@ -49,14 +50,14 @@ gulp.task('build-style', function () {
 //});
 
 
-gulp.task('build', ['clean'], function () {
+//gulp.task('build', function () {
+//
+//  //gulp.start('build-script', 'build-style');
+//  gulp.start('build-style');
+//});
 
-  //gulp.start('build-script', 'build-style');
-  gulp.start('build-style');
-});
 
-
-gulp.task('default', ['clean'], function () {
+gulp.task('default', function () {
 
   //gulp.start('build-script', 'build-style', 'document');
   gulp.start('build-style');
