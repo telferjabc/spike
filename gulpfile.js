@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    path = require('path'),
+    compass = require('gulp-compass'),
     notify = require('gulp-notify');
 
 
@@ -12,6 +14,23 @@ var config = {
   },
   dist:'dist/'
 };
+
+gulp.task('compass', function(){
+  gulp.src('./src/*.scss')
+    .pipe(compass({
+      config_file: './config.rb',
+      css: './dist',
+      sass: './src',
+      debut: true
+    }))
+    .pipe(gulp.dest('./dist/'))
+    .pipe(notify({
+      message: 'build-compass:complete'
+    }))
+    .on('error', function(error) {
+      log(error)
+    });
+});
 
 gulp.task('build-style', function () {
 
@@ -28,37 +47,8 @@ gulp.task('build-style', function () {
 
 });
 
-
-//gulp.task('build-script', function () {
-//
-//  if (!(config.product.scriptInput && config.product.scriptName)) {
-//    return;
-//  }
-//
-//  gulp.src(config.product.scriptInput)
-//    .pipe(concat(config.product.scriptName))
-//    .pipe(gulp.dest(config.dist))
-//    .pipe(rename({
-//      suffix:'.min'
-//    }))
-//    .pipe(uglify())
-//    .pipe(gulp.dest(config.dist))
-//    .pipe(notify({
-//      message: 'build-script:complete'
-//    }));
-//
-//});
-
-
-//gulp.task('build', function () {
-//
-//  //gulp.start('build-script', 'build-style');
-//  gulp.start('build-style');
-//});
-
-
 gulp.task('default', function () {
 
   //gulp.start('build-script', 'build-style', 'document');
-  gulp.start('build-style');
+  gulp.start('compass');
 });
