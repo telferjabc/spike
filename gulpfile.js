@@ -5,15 +5,33 @@ var gulp = require('gulp'),
     notify = require('gulp-notify');
 
 
-var config = {
-  product: {
-    scriptInput: 'src/*.js',
-    scriptName:'app.js',
-    styleInput: 'src/*.scss',
-    styleName:'app.css'
-  },
-  dist:'dist/'
-};
+//var config = {
+//  product: {
+//    scriptInput: 'src/*.js',
+//    scriptName:'app.js',
+//    styleInput: 'src/*.scss',
+//    styleName:'app.css'
+//  },
+//  dist:'dist/'
+//};
+
+// trying to create task just to compile foundation
+//gulp.task('foundation', function(){
+//  gulp.src('./src/foundation_customized.scss')
+//    .pipe(compass({
+//      config_file: './config.rb',
+//      css: './dist',
+//      sass: './bower_components/foundation/scss',
+//      debut: true
+//    }))
+//    .pipe(gulp.dest('./dist/'))
+//    .pipe(notify({
+//      message: 'build-foundation:complete'
+//    }))
+//    .on('error', function(error) {
+//      log(error)
+//    });
+//});
 
 gulp.task('compass', function(){
   gulp.src('./src/*.scss')
@@ -32,20 +50,20 @@ gulp.task('compass', function(){
     });
 });
 
-gulp.task('build-style', function () {
-
-  if (!(config.product.styleInput && config.product.styleName)) {
-    return;
-  }
-
-  return gulp.src(config.product.styleInput)
-    .pipe(sass({sourceComments: 'map', sourceMap: 'sass', style: 'compact'}))
-    .pipe(gulp.dest(config.dist))
-    .pipe(notify({
-      message: 'build-style:complete'
-    }));
-
-});
+//gulp.task('build-style', function () {
+//
+//  if (!(config.product.styleInput && config.product.styleName)) {
+//    return;
+//  }
+//
+//  return gulp.src(config.product.styleInput)
+//    .pipe(sass({sourceComments: 'map', sourceMap: 'sass', style: 'compact'}))
+//    .pipe(gulp.dest(config.dist))
+//    .pipe(notify({
+//      message: 'build-style:complete'
+//    }));
+//
+//});
 
 gulp.task('default', function () {
 
